@@ -1,0 +1,25 @@
+---
+
+# see https://yamllint.readthedocs.io/en/stable/configuration.html#extending-the-default-configuration
+extends: default
+
+# see https://yamllint.readthedocs.io/en/stable/configuration.html#ignoring-paths
+ignore-from-file: .gitignore
+
+# see https://yamllint.readthedocs.io/en/stable/configuration.html#yaml-files-extensions
+yaml-files:
+  - '*.yml'
+
+rules:
+  # see https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.line_length
+  line-length:
+    max: 180
+
+  # see https://yamllint.readthedocs.io/en/stable/rules.html#module-yamllint.rules.truthy
+  truthy:
+    allowed-values: [
+      'true',
+      'false'
+    ]
+
+    check-keys: true
