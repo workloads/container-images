@@ -1,15 +1,16 @@
-# Docker Images
+# Container Images
 
-> This directory manages Docker Images for [@workloads](https://github.com/workloads).
+> This directory manages Container Images for [@workloads](https://github.com/workloads).
 
 ## Table of Contents
 
 <!-- TOC -->
-* [Docker Images](#docker-images)
+* [Container Images](#container-images)
   * [Table of Contents](#table-of-contents)
   * [Requirements](#requirements)
   * [Usage](#usage)
   * [Notes](#notes)
+    * [Publishing Images](#publishing-images)
     * [Development Helpers](#development-helpers)
   * [Author Information](#author-information)
   * [License](#license)
@@ -18,11 +19,11 @@
 ## Requirements
 
 - HashiCorp Packer `1.9.1` or [newer](https://developer.hashicorp.com/packer/downloads)
-- Docker `24.0.4` or [newer](https://www.docker.com/products/docker-desktop/)
-  - alternatively Docker-compatible runtimes (e.g.: Podman, OrbStack) may be used
+- Docker `24.0.0` or [newer](https://www.docker.com/products/docker-desktop/)
+  - alternate compatible runtimes (e.g.: Podman, OrbStack) may be used
 - a check-out of [@workloads/tooling](https://github.com/workloads/tooling)
 
-Optional, and only needed for development and testing of Packs:
+Optional, and only needed for development and testing of Container Images:
 
 - `terraform-docs` `0.16.0` or [newer](https://terraform-docs.io/user-guide/installation/)
 
@@ -33,24 +34,30 @@ This repository provides a workflow that is wrapped through a [Makefile](./Makef
 Running `make` without commands will print out the following help information:
 
 ```text
-🐳 DOCKER IMAGES
+🐳 CONTAINER IMAGES
 
 Target          Description                                     Usage
-init            initialize a Packer Template                    `make init image=my_image`
-lint            lint a Docker Image Template                    `make lint image=my_image`
-build           build a Docker Image                            `make build image=my_image`
-docs            generate documentation for all Packer Images    `make docs image=my_image`
-console         start Packer Console                            `make console image=my_image`
+init            initialize a Packer Template                    `make init template=my_template`
+lint            lint a Container Image Template                 `make lint template=my_template`
+build           build a Container Image                         `make build template=my_template`
+docs            generate documentation for all Packer Images    `make docs template=my_template`
+console         start Packer Console                            `make console template=my_template`
+snyk_test       test Image with Snyk Container                  `make snyk_test image=my_image`
 yaml_lint       lint YAML files                                 `make yaml_lint`
 help            display a list of Make Targets                  `make help`
 _listincludes   list all included Makefiles and *.mk files      `make _listincludes`
 _selfcheck      lint Makefile                                   `make _selfcheck`
-
 ```
 
 > All workflows _may_ be executed manually, though this is not advisable. See the [Makefile](./Makefile) for more information.
 
 ## Notes
+
+### Publishing Images
+
+Images can be pushed to a Container Registry by setting the `push-image` flag to `true` as part of the `make build` target.
+
+This will run the [`docker-push`](https://developer.hashicorp.com/packer/plugins/post-processors/docker/docker-push) Post Processor as part of the Packer build process.
 
 ### Development Helpers
 
@@ -60,7 +67,7 @@ These targets are prefixed with an underscore (`_`) and may be removed at any ti
 
 ## Author Information
 
-This repository is maintained by the contributors listed on [GitHub](https://github.com/workloads/docker-images/graphs/contributors).
+This repository is maintained by the contributors listed on [GitHub](https://github.com/workloads/container-images/graphs/contributors).
 
 ## License
 

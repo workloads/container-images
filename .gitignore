@@ -1,4 +1,1 @@
-# ignored symlinked shared variable files
-packer/*/shared.pkr.hcl
-
-.idea/*
+./dist/
