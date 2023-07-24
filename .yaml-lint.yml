@@ -1,12 +1,10 @@
+# This is a Terraform-managed file; manual changes will be overwritten.
+# see https://github.com/workloads/github-organization/blob/main/templates/.yaml-lint.yml
+
 ---
 
-# see https://yamllint.readthedocs.io/en/stable/configuration.html#extending-the-default-configuration
 extends: default
 
-# see https://yamllint.readthedocs.io/en/stable/configuration.html#ignoring-paths
-ignore-from-file: .gitignore
-
-# see https://yamllint.readthedocs.io/en/stable/configuration.html#yaml-files-extensions
 yaml-files:
   - '*.yml'
 
@@ -21,5 +19,4 @@ rules:
       'true',
       'false'
     ]
-
     check-keys: true
