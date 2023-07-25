@@ -19,7 +19,7 @@ source "docker" "main" {
     "LABEL org.opencontainers.image.authors='${var.target_image_repository_namespace}'",
     "LABEL org.opencontainers.image.authors=${var.target_image_repository_namespace}",
     "LABEL org.opencontainers.image.created='${timestamp()}'",
-    "LABEL org.opencontainers.image.documentation='${var.target_image_repository_namespace}/${var.target_image_repository_slug}'",
+    "LABEL org.opencontainers.image.documentation='${var.target_image_repository_namespace}/${var.target_image_repository_slug}/README.md'",
     "LABEL org.opencontainers.image.url='${var.target_image_repository_namespace}/${var.target_image_repository_slug}'",
     "LABEL org.opencontainers.image.ref='${var.target_image_name}'",
     "LABEL org.opencontainers.image.revision='${var.target_version}'",
@@ -58,19 +58,27 @@ build {
     inline_shebang = var.inline_shebang
   }
 
-  # see https://developer.hashicorp.com/packer/plugins/builders/docker#using-the-artifact-committed
-  # and https://developer.hashicorp.com/packer/plugins/post-processors/docker/docker-tag
-  post-processor "docker-tag" {
-    force      = var.force_tag
-    repository = "${var.target_registry}/${var.target_image_org}/${var.target_image_name}"
+  post-processors {
+    # see https://developer.hashicorp.com/packer/plugins/builders/docker#using-the-artifact-committed
+    # and https://developer.hashicorp.com/packer/plugins/post-processors/docker/docker-tag
+    post-processor "docker-tag" {
+      force      = var.force_tag
+      repository = "${var.target_registry_server}/${var.target_image_org}/${var.target_image_name}"
 
-    tags = [
-      var.target_version
-    ]
-  }
+      tags = [
+        var.target_version
+      ]
+    }
 
-  # see https://developer.hashicorp.com/packer/plugins/post-processors/docker/docker-push
-  post-processor "docker-push" {
-    keep_input_artifact = var.keep_input_artifact
+    # see https://developer.hashicorp.com/packer/plugins/post-processors/docker/docker-push
+    post-processor "docker-push" {
+      keep_input_artifact = var.keep_input_artifact
+
+      # see https://developer.hashicorp.com/packer/plugins/post-processors/docker/docker-push#login
+      login          = true
+      login_server   = var.target_registry_server
+      login_password = var.target_registry_password
+      login_username = var.target_registry_username
+    }
   }
 }

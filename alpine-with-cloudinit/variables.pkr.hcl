@@ -113,11 +113,23 @@ variable "target_image_license" {
   default     = "Apache-2.0"
 }
 
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
-variable "target_registry" {
+variable "target_registry_password" {
   type        = string
-  description = "Registry of the Output Container Image."
+  description = "Password of the Container Registry of the Output Container Image. Parsed using `env()`."
+  default     = "PACKER_TARGET_REGISTRY_PASSWORD"
+}
+
+# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
+variable "target_registry_server" {
+  type        = string
+  description = "Address of the Container Registry of the Output Container Image."
   default     = "ghcr.io"
+}
+
+variable "target_registry_username" {
+  type        = string
+  description = "Username of the Container Registry of the Output Container Image. Parsed using `env()`."
+  default     = "PACKER_TARGET_REGISTRY_USERNAME"
 }
 
 # see https://developer.hashicorp.com/packer/plugins/builders/docker#image

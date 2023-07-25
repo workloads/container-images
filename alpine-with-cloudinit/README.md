@@ -59,6 +59,16 @@ docker \
 | source_image | Namespace and Image Slug of the Input Container Image. | `"alpine"`                                                             |
 | source_registry | Registry of the Input Container Image. | `"index.docker.io"`                                                    |
 | source_version | Version of the Input Container Image. | `"3.18.2"`                                                             |
+| target_image_description | Description of the Output Container Image. | `"Alpine Linux with Cloud-Init"`                                       |
+| target_image_license | License of the Output Container Image. | `"Apache-2.0"`                                                         |
+| target_image_name | Name of the Output Container Image. | `"alpine-with-cloudinit"`                                              |
+| target_image_org | Namespace / Organization of the Output Container Image. | `"workloads"`                                                          |
+| target_image_repository_namespace | Source Namespace of the Output Container Image. | `"https://github.com/workloads"`                                       |
+| target_image_repository_slug | Source Repository of the Output Container Image. | `"container-images/tree/main/alpine-with-cloudinit"`                   |
+| target_registry_password | Password of the Container Registry of the Output Container Image. Parsed using `env()`. | `env("PACKER_TARGET_REGISTRY_PASSWORD")`                               |
+| target_registry_server | Address of the Container Registry of the Output Container Image. | `"ghcr.io"`                                                            |
+| target_registry_username | Username of the Container Registry of the Output Container Image. Parsed using `env()`. | `env("PACKER_TARGET_REGISTRY_USERNAME")`                               |
+| target_version | Version of the Output Container Image. | `"latest"`                                                             |
 <!-- END_PACKER_DOCS -->
 
 ## Author Information

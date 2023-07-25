@@ -11,6 +11,7 @@
   * [Usage](#usage)
   * [Notes](#notes)
     * [Publishing Images](#publishing-images)
+    * [Security Scanning](#security-scanning)
     * [Development Helpers](#development-helpers)
   * [Author Information](#author-information)
   * [License](#license)
@@ -36,17 +37,19 @@ Running `make` without commands will print out the following help information:
 ```text
 🐳 CONTAINER IMAGES
 
-Target          Description                                     Usage
-init            initialize a Packer Template                    `make init template=my_template`
-lint            lint a Container Image Template                 `make lint template=my_template`
-build           build a Container Image                         `make build template=my_template`
-docs            generate documentation for all Packer Images    `make docs template=my_template`
-console         start Packer Console                            `make console template=my_template`
-snyk_test       test Image with Snyk Container                  `make snyk_test image=my_image`
-yaml_lint       lint YAML files                                 `make yaml_lint`
-help            display a list of Make Targets                  `make help`
-_listincludes   list all included Makefiles and *.mk files      `make _listincludes`
-_selfcheck      lint Makefile                                   `make _selfcheck`
+Target            Description                                     Usage
+init              initialize a Packer Template                    `make init template=my_template`
+lint              lint a Container Image Template                 `make lint template=my_template`
+build             build a Container Image                         `make build template=my_template`
+docs              generate documentation for all Packer Images    `make docs template=my_template`
+console           start Packer Console                            `make console template=my_template`
+print-secrets     print (sanitized) environment variables         `make print-secrets`
+snyk_test         test Image with Snyk Container                  `make snyk_test image=my_image`
+yaml_lint         lint YAML files                                 `make yaml_lint`
+_registry_login   log in to a (Docker) Registry                   `make _registry_login`
+help              display a list of Make Targets                  `make help`
+_listincludes     list all included Makefiles and *.mk files      `make _listincludes`
+_selfcheck        lint Makefile                                   `make _selfcheck`
 ```
 
 > All workflows _may_ be executed manually, though this is not advisable. See the [Makefile](./Makefile) for more information.
@@ -58,6 +61,13 @@ _selfcheck      lint Makefile                                   `make _selfcheck
 Images may be pushed to a Container Registry by setting the `push` flag to `true` as part of the `make build` target.
 
 This will run the [`docker-push`](https://developer.hashicorp.com/packer/plugins/post-processors/docker/docker-push) Post Processor as part of the Packer build process.
+
+### Security Scanning
+
+Images may be scanned for security concerns using [Snyk Container](https://snyk.io/product/container-vulnerability-management/) with the `make snyk_test` command.
+
+> **Note**
+> The `snyk_test` target requires the Snyk CLI to be [authenticated](https://docs.snyk.io/snyk-cli/authenticate-the-cli-with-your-account) with the Snyk API.
 
 ### Development Helpers
 
