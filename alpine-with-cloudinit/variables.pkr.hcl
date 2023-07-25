@@ -74,6 +74,7 @@ variable "source_version" {
 
 locals {
   source_content_address = "${var.source_registry}/${var.source_image}:${var.source_version}"
+  image_source           = "${var.target_image_repository_namespace}/${var.target_image_repository_slug}"
 }
 
 # see https://developer.hashicorp.com/packer/plugins/builders/docker#image
@@ -116,7 +117,7 @@ variable "target_image_license" {
 variable "target_registry_password" {
   type        = string
   description = "Password of the Container Registry of the Output Container Image. Parsed using `env()`."
-  default     = "PACKER_TARGET_REGISTRY_PASSWORD"
+  default     = env("PACKER_TARGET_REGISTRY_PASSWORD")
 }
 
 # see https://developer.hashicorp.com/packer/plugins/builders/docker#image
@@ -129,7 +130,7 @@ variable "target_registry_server" {
 variable "target_registry_username" {
   type        = string
   description = "Username of the Container Registry of the Output Container Image. Parsed using `env()`."
-  default     = "PACKER_TARGET_REGISTRY_USERNAME"
+  default     = env("PACKER_TARGET_REGISTRY_USERNAME")
 }
 
 # see https://developer.hashicorp.com/packer/plugins/builders/docker#image
