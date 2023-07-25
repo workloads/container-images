@@ -18,7 +18,7 @@
 
 ## Requirements
 
-- HashiCorp Packer `1.9.1` or [newer](https://developer.hashicorp.com/packer/downloads)
+- HashiCorp Packer `1.9.0` or [newer](https://developer.hashicorp.com/packer/downloads)
 - Docker `24.0.0` or [newer](https://www.docker.com/products/docker-desktop/)
   - alternate compatible runtimes (e.g.: Podman, OrbStack) may be used
 - a check-out of [@workloads/tooling](https://github.com/workloads/tooling)
@@ -55,7 +55,7 @@ _selfcheck      lint Makefile                                   `make _selfcheck
 
 ### Publishing Images
 
-Images can be pushed to a Container Registry by setting the `push-image` flag to `true` as part of the `make build` target.
+Images may be pushed to a Container Registry by setting the `push` flag to `true` as part of the `make build` target.
 
 This will run the [`docker-push`](https://developer.hashicorp.com/packer/plugins/post-processors/docker/docker-push) Post Processor as part of the Packer build process.
 
