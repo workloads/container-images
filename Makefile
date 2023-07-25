@@ -1,22 +1,23 @@
 # Makefile for Container Image Building Management
 
 # configuration
-ARGS            :=
-BINARY_DOCKER 	?= docker
-BINARY_PACKER   ?= packer
-BINARY_YAMLLINT ?= yamllint
-DIR_DIST				?= dist
-DOCS_CONFIG      = .packer-docs.yml
-IMAGE_NAME      ?= $(shell basename $(image))
-SNYK_ORG				?= workloads
-YAMLLINT_CONFIG ?= .yaml-lint.yml
-YAMLLINT_FORMAT	?= colored
-TITLE            = 🐳 CONTAINER IMAGES
+ARGS                  :=
+BINARY_DOCKER 	      ?= docker
+BINARY_OP              = $(call check_for_binary,op)
+BINARY_PACKER         ?= packer
+BINARY_YAMLLINT       ?= yamllint
+DIR_DIST				      ?= dist
+DOCS_CONFIG            = .packer-docs.yml
+IMAGE_NAME            ?= $(shell basename $(image))
+SNYK_ORG				      ?= workloads
+YAMLLINT_CONFIG       ?= .yaml-lint.yml
+YAMLLINT_FORMAT	      ?= colored
+TITLE                  = 🐳 CONTAINER IMAGES
 
 args_except = -except="docker-push"
 
-# enable pushing of image if `push-image` has been passed
-ifdef push-image
+# enable pushing of image if `push` has been passed
+ifdef push
 args_except =
 endif
 
@@ -56,7 +57,7 @@ docs: # generate documentation for all Packer Images [Usage: `make docs template
 	$(if $(template),,$(call missing_argument,docs,template=my_template))
 
 	# TODO: align with overall `render_documentation` function
-	$(call render_documentation,$(strip $(image)),variables.pkr.hcl,$(DOCS_CONFIG),sample.pkrvars.hcl)
+	$(call render_documentation,$(strip $(template)),variables.pkr.hcl,$(DOCS_CONFIG),sample.pkrvars.hcl)
 
 .SILENT .PHONY: console
 console: # start Packer Console [Usage: `make console template=my_template`]
