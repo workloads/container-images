@@ -32,10 +32,8 @@ endif
 cli_args = $(args_except)
 
 include ../tooling/make/configs/shared.mk
-
 include ../tooling/make/functions/shared.mk
 include ../tooling/make/functions/packer.mk
-
 include ../tooling/make/targets/shared.mk
 
 .SILENT .PHONY: init
