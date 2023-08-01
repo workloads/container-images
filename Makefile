@@ -6,17 +6,17 @@ BINARY_DOCKER 	      ?= docker
 BINARY_OP              = $(call check_for_binary,op)
 BINARY_PACKER         ?= packer
 BINARY_YAMLLINT       ?= yamllint
-DIR_DIST				      ?= dist
+DIR_DIST              ?= dist
 DOCS_CONFIG            = .packer-docs.yml
 IMAGE_NAME            ?= $(shell basename $(image))
 OP_ACCOUNT             = workloads.1password.com
-OP_ENV_FILE  					 = secrets.op.env
+OP_ENV_FILE            = secrets.op.env
 REGISTRY_ADDRESS      ?= ghcr.io
 REGISTRY_PASSWORD_REF ?= "op://Shared/github/tokens/container-images"
-REGISTRY_USERNAME		  ?= $(shell op read --account="$(OP_ACCOUNT)" --no-newline "$(REGISTRY_USERNAME_REF)")
+REGISTRY_USERNAME     ?= $(shell op read --account="$(OP_ACCOUNT)" --no-newline "$(REGISTRY_USERNAME_REF)")
 REGISTRY_USERNAME_REF ?= "op://Shared/github/username"
 REGISTRY_PASSWORD 	  ?= $(shell op read --account="$(OP_ACCOUNT)" --no-newline "$(REGISTRY_PASSWORD_REF)")
-SNYK_ORG				      ?= workloads
+SNYK_ORG              ?= workloads
 YAMLLINT_CONFIG       ?= .yaml-lint.yml
 YAMLLINT_FORMAT	      ?= colored
 TITLE                  = 🐳 CONTAINER IMAGES
@@ -37,21 +37,21 @@ include ../tooling/make/functions/packer.mk
 include ../tooling/make/targets/shared.mk
 
 .SILENT .PHONY: init
-init: # initialize a Packer Template [Usage: `make init template=my_template`]
-	$(if $(template),,$(call missing_argument,init,template=my_template))
+init: # initialize a Packer Template [Usage: `make init template=<template>`]
+	$(if $(template),,$(call missing_argument,init,template=<template>))
 
 	$(call print_args,$(ARGS))
 	$(call packer_init,$(template))
 
 .SILENT .PHONY: lint
-lint: # lint a Container Image Template [Usage: `make lint template=my_template`]
-	$(if $(template),,$(call missing_argument,lint,template=my_template))
+lint: # lint a Container Image Template [Usage: `make lint template=<template>`]
+	$(if $(template),,$(call missing_argument,lint,template=<template>))
 
 	$(call print_args,$(ARGS))
 	$(call packer_lint,$(template))
 
 .SILENT .PHONY: build
-build: # build a Container Image [Usage: `make build template=my_template`]
+build: # build a Container Image [Usage: `make build template=<template>`]
 ifeq ($(strip $(BINARY_OP)),)
 	$(error 🛑 Missing required 1Password CLI)
 endif
@@ -60,15 +60,15 @@ endif
 	$(call packer_build_with_secrets,$(template))
 
 .SILENT .PHONY: docs
-docs: # generate documentation for all Packer Images [Usage: `make docs template=my_template`]
-	$(if $(template),,$(call missing_argument,docs,template=my_template))
+docs: # generate documentation for all Packer Images [Usage: `make docs template=<template>`]
+	$(if $(template),,$(call missing_argument,docs,template=<template>))
 
 	# TODO: align with overall `render_documentation` function
 	$(call render_documentation,$(strip $(template)),variables.pkr.hcl,$(DOCS_CONFIG),sample.pkrvars.hcl)
 
 .SILENT .PHONY: console
-console: # start Packer Console [Usage: `make console template=my_template`]
-	$(if $(template),,$(call missing_argument,console,template=my_template))
+console: # start Packer Console [Usage: `make console template=<template>`]
+	$(if $(template),,$(call missing_argument,console,template=<template>))
 
 	$(call print_args,$(ARGS))
 	$(call packer_console,$(template))
@@ -82,8 +82,8 @@ endif
 	$(call print_secrets,"PACKER_TARGET_")
 
 .SILENT .PHONY: snyk_test
-snyk_test: # test Image with Snyk Container [Usage: `make snyk_test image=my_image`]
-	$(if $(image),,$(call missing_argument,console,image=my_image))
+snyk_test: # test Image with Snyk Container [Usage: `make snyk_test image=<image>`]
+	$(if $(image),,$(call missing_argument,console,image=<image>))
 
 	# see https://docs.snyk.io/snyk-cli/commands/container-test
 	snyk \

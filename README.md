@@ -13,6 +13,7 @@
     * [Publishing Images](#publishing-images)
     * [Security Scanning](#security-scanning)
     * [Development Helpers](#development-helpers)
+    * [Colored Output](#colored-output)
   * [Author Information](#author-information)
   * [License](#license)
 <!-- TOC -->
@@ -38,13 +39,13 @@ Running `make` without commands will print out the following help information:
 🐳 CONTAINER IMAGES
 
 Target            Description                                     Usage
-init              initialize a Packer Template                    `make init template=my_template`
-lint              lint a Container Image Template                 `make lint template=my_template`
-build             build a Container Image                         `make build template=my_template`
-docs              generate documentation for all Packer Images    `make docs template=my_template`
-console           start Packer Console                            `make console template=my_template`
+init              initialize a Packer Template                    `make init template=<template>`
+lint              lint a Container Image Template                 `make lint template=<template>`
+build             build a Container Image                         `make build template=<template>`
+docs              generate documentation for all Packer Images    `make docs template=<template>`
+console           start Packer Console                            `make console template=<template>`
 print-secrets     print (sanitized) environment variables         `make print-secrets`
-snyk_test         test Image with Snyk Container                  `make snyk_test image=my_image`
+snyk_test         test Image with Snyk Container                  `make snyk_test image=<image>`
 yaml_lint         lint YAML files                                 `make yaml_lint`
 _registry_login   log in to a (Docker) Registry                   `make _registry_login`
 help              display a list of Make Targets                  `make help`
@@ -74,6 +75,14 @@ Images may be scanned for security concerns using [Snyk Container](https://snyk.
 The [Makefile](./Makefile) includes several unsupported helper targets that _may_ be useful when developing additional templates and functionality.
 
 These targets are prefixed with an underscore (`_`) and may be removed at any time.
+
+### Colored Output
+
+Colorized CLI output may be disabled by setting the `NO_COLOR` environment variable to any non-empty value.
+
+```shell
+export NO_COLOR=1 && make
+```
 
 ## Author Information
 
