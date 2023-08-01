@@ -38,14 +38,14 @@ include ../tooling/make/targets/shared.mk
 
 .SILENT .PHONY: init
 init: # initialize a Packer Template [Usage: `make init template=<template>`]
-	$(if $(template),,$(call missing_argument,init,template=<template>))
+	$(if $(template),,$(call missing_argument,template=<template>))
 
 	$(call print_args,$(ARGS))
 	$(call packer_init,$(template))
 
 .SILENT .PHONY: lint
 lint: # lint a Container Image Template [Usage: `make lint template=<template>`]
-	$(if $(template),,$(call missing_argument,lint,template=<template>))
+	$(if $(template),,$(call missing_argument,template=<template>))
 
 	$(call print_args,$(ARGS))
 	$(call packer_lint,$(template))
@@ -61,14 +61,14 @@ endif
 
 .SILENT .PHONY: docs
 docs: # generate documentation for all Packer Images [Usage: `make docs template=<template>`]
-	$(if $(template),,$(call missing_argument,docs,template=<template>))
+	$(if $(template),,$(call missing_argument,template=<template>))
 
 	# TODO: align with overall `render_documentation` function
 	$(call render_documentation,$(strip $(template)),variables.pkr.hcl,$(DOCS_CONFIG),sample.pkrvars.hcl)
 
 .SILENT .PHONY: console
 console: # start Packer Console [Usage: `make console template=<template>`]
-	$(if $(template),,$(call missing_argument,console,template=<template>))
+	$(if $(template),,$(call missing_argument,template=<template>))
 
 	$(call print_args,$(ARGS))
 	$(call packer_console,$(template))
@@ -83,7 +83,7 @@ endif
 
 .SILENT .PHONY: snyk_test
 snyk_test: # test Image with Snyk Container [Usage: `make snyk_test image=<image>`]
-	$(if $(image),,$(call missing_argument,console,image=<image>))
+	$(if $(image),,$(call missing_argument,image=<image>))
 
 	# see https://docs.snyk.io/snyk-cli/commands/container-test
 	snyk \
