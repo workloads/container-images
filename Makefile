@@ -34,20 +34,21 @@ cli_args = $(args_except)
 include ../tooling/make/configs/shared.mk
 include ../tooling/make/functions/shared.mk
 include ../tooling/make/functions/packer.mk
+include ../tooling/make/targets/packer.mk
 include ../tooling/make/targets/shared.mk
 
 .SILENT .PHONY: init
 init: # initialize a Packer Template [Usage: `make init template=<template>`]
 	$(if $(template),,$(call missing_argument,template=<template>))
 
-	$(call print_args,$(ARGS))
+	$(call print_args)
 	$(call packer_init,$(template))
 
 .SILENT .PHONY: lint
 lint: # lint a Container Image Template [Usage: `make lint template=<template>`]
 	$(if $(template),,$(call missing_argument,template=<template>))
 
-	$(call print_args,$(ARGS))
+	$(call print_args)
 	$(call packer_lint,$(template))
 
 .SILENT .PHONY: build
@@ -56,7 +57,7 @@ ifeq ($(strip $(BINARY_OP)),)
 	$(error 🛑 Missing required 1Password CLI)
 endif
 
-	$(call print_args,$(ARGS))
+	$(call print_args)
 	$(call packer_build_with_secrets,$(template))
 
 .SILENT .PHONY: docs
@@ -70,7 +71,7 @@ docs: # generate documentation for all Packer Images [Usage: `make docs template
 console: # start Packer Console [Usage: `make console template=<template>`]
 	$(if $(template),,$(call missing_argument,template=<template>))
 
-	$(call print_args,$(ARGS))
+	$(call print_args)
 	$(call packer_console,$(template))
 
 .SILENT .PHONY: print-secrets
@@ -95,10 +96,6 @@ snyk_test: # test Image with Snyk Container [Usage: `make snyk_test image=<image
 				--print-deps \
 				--sarif-file-output="$(DIR_DIST)/$(IMAGE_NAME).sarif" \
 				"$(image)"
-
-.SILENT .PHONY: yaml_lint
-yaml_lint: # lint YAML files [Usage: `make yaml_lint`]
-	$(call yaml_lint)
 
 .SILENT .PHONY: _registry_login
 _registry_login: # log in to a (Docker) Registry [Usage: `make _registry_login`]
