@@ -7,6 +7,8 @@ BINARY_OP              = $(call check_for_binary,op)
 BINARY_PACKER         ?= packer
 BINARY_YAMLLINT       ?= yamllint
 DIR_DIST              ?= dist
+DIR_PACKER            ?= .
+DIR_BUILD              = $(DIR_PACKER)/$(builder)
 DOCS_CONFIG            = .packer-docs.yml
 IMAGE_NAME            ?= $(shell basename $(image))
 OP_ACCOUNT             = workloads.1password.com
@@ -15,7 +17,8 @@ REGISTRY_ADDRESS      ?= ghcr.io
 REGISTRY_PASSWORD_REF ?= "op://Shared/github/tokens/container-images"
 REGISTRY_USERNAME     ?= $(shell op read --account="$(OP_ACCOUNT)" --no-newline "$(REGISTRY_USERNAME_REF)")
 REGISTRY_USERNAME_REF ?= "op://Shared/github/username"
-REGISTRY_PASSWORD 	  ?= $(shell op read --account="$(OP_ACCOUNT)" --no-newline "$(REGISTRY_PASSWORD_REF)")
+REGISTRY_PASSWORD     ?= $(shell op read --account="$(OP_ACCOUNT)" --no-newline "$(REGISTRY_PASSWORD_REF)")
+FILES_SHARED          ?= "variables_shared.pkr.hcl" "builders_shared.pkr.hcl"
 SNYK_ORG              ?= workloads
 YAMLLINT_CONFIG       ?= .yaml-lint.yml
 YAMLLINT_FORMAT	      ?= colored
