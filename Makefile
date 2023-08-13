@@ -60,6 +60,7 @@ build: # build a Container Image [Usage: `make build template=<template>`]
 ifeq ($(strip $(BINARY_OP)),)
 	$(error 🛑 Missing required 1Password CLI)
 endif
+	$(if $(template),,$(call missing_argument,template=<template>))
 
 	$(call print_args)
 	$(call packer_build_with_secrets,$(template))
