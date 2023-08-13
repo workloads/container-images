@@ -39,18 +39,19 @@ Running `make` without commands will print out the following help information:
 🐳 CONTAINER IMAGES
 
 Target            Description                                     Usage
-init              initialize a Packer Template                    `make init template=<template>`
-lint              lint a Container Image Template                 `make lint template=<template>`
-build             build a Container Image                         `make build template=<template>`
-docs              generate documentation for all Packer Images    `make docs template=<template>`
-console           start Packer Console                            `make console template=<template>`
-print-secrets     print (sanitized) environment variables         `make print-secrets`
-snyk_test         test Image with Snyk Container                  `make snyk_test image=<image>`
-yaml_lint         lint YAML files                                 `make yaml_lint`
-_registry_login   log in to a (Docker) Registry                   `make _registry_login`
-help              display a list of Make Targets                  `make help`
-_listincludes     list all included Makefiles and *.mk files      `make _listincludes`
-_selfcheck        lint Makefile                                   `make _selfcheck`
+init              initialize a Packer Template                                       `make init template=<template>`
+lint              lint a Container Image Template                                    `make lint template=<template>`
+build             build a Container Image                                            `make build template=<template>`
+docs              generate documentation for all Packer Images                       `make docs template=<template>`
+console           start Packer Console                                               `make console template=<template>`
+print-secrets     print (sanitized) environment variables                            `make print-secrets`
+snyk_test         test Image with Snyk Container                                     `make snyk_test image=<image>`
+_registry_login   log in to a (Docker) Registry                                      `make _registry_login`
+yaml_lint         lint YAML files                                                    `make yaml_lint`
+_link_vars        create a symlink to the shared variables file for a new builder    `make _link_vars builder=<builder>`
+help              display a list of Make Targets                                     `make help`
+_listincludes     list all included Makefiles and *.mk files                         `make _listincludes`
+_selfcheck        lint Makefile                                                      `make _selfcheck`
 ```
 
 > All workflows _may_ be executed manually, though this is not advisable. See the [Makefile](./Makefile) for more information.
