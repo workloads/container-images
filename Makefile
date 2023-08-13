@@ -20,6 +20,7 @@ REGISTRY_USERNAME_REF ?= "op://Shared/github/username"
 REGISTRY_PASSWORD     ?= $(shell op read --account="$(OP_ACCOUNT)" --no-newline "$(REGISTRY_PASSWORD_REF)")
 FILES_SHARED          ?= "variables_shared.pkr.hcl" "builders_shared.pkr.hcl"
 SNYK_ORG              ?= workloads
+VERSION               ?= $(shell TZ=UTC date +'%Y%m%d-%H%M')
 YAMLLINT_CONFIG       ?= .yaml-lint.yml
 YAMLLINT_FORMAT	      ?= colored
 TITLE                  = 🐳 CONTAINER IMAGES
@@ -32,7 +33,7 @@ args_except =
 endif
 
 # convenience handle for ALL CLI arguments
-cli_args = $(args_except)
+cli_args = $(args_except) -var="target_version=$(VERSION)"
 
 include ../tooling/make/configs/shared.mk
 include ../tooling/make/functions/shared.mk

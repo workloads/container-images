@@ -55,3 +55,10 @@ variable "target_registry_username" {
   description = "Username of the Container Registry of the Output Container Image. Parsed using `env()`."
   default     = env("PACKER_TARGET_REGISTRY_USERNAME")
 }
+
+# `target_version` as received from `make`
+# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
+variable "target_version" {
+  type        = string
+  description = "Target Version Output Container Image as received from `make`."
+}

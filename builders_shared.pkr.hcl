@@ -31,7 +31,8 @@ build {
       repository = "${var.target_registry_server}/${var.target_image_org}/${var.target_image_name}"
 
       tags = [
-        var.target_version
+        var.target_version,
+        "latest",
       ]
     }
 

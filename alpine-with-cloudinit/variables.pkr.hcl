@@ -39,7 +39,8 @@ variable "source_registry" {
   default     = "index.docker.io"
 }
 
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
+# see https://hub.docker.com/_/alpine/tags
+# and https://developer.hashicorp.com/packer/plugins/builders/docker#image
 variable "source_version" {
   type        = string
   description = "Version of the Input Container Image."
@@ -68,11 +69,4 @@ locals {
   source_content_address       = "${var.source_registry}/${var.source_image}:${var.source_version}"
   target_image_repository_slug = "container-images/tree/main/${var.target_image_name}"
   image_source                 = "${var.target_image_repository_namespace}/${local.target_image_repository_slug}"
-}
-
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
-variable "target_version" {
-  type        = string
-  description = "Version of the Output Container Image."
-  default     = "latest"
 }

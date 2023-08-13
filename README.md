@@ -63,6 +63,14 @@ Images may be pushed to a Container Registry by setting the `push` flag to `true
 
 This will run the [`docker-push`](https://developer.hashicorp.com/packer/plugins/post-processors/docker/docker-push) Post Processor as part of the Packer build process.
 
+### Version Names
+
+Images are versioned using a string that is derived from the current date and time, normalized to UTC.
+
+The default format is `%Y%m%d-%H%M`, which translates to a string that looks like this: `19701231-2359`.
+
+The default value may be overridden by setting the `VERSION` flag to any (other) string.
+
 ### Security Scanning
 
 Images may be scanned for security concerns using [Snyk Container](https://snyk.io/product/container-vulnerability-management/) with the `make snyk_test` command.
