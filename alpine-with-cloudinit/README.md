@@ -25,10 +25,10 @@
 
 |                 |                                               |
 |-----------------|-----------------------------------------------|
-| image template  | [template.pkr.hcl](template.pkr.hcl)          |
-| image variables | [variables.pkr.hcl](variables.pkr.hcl)        |
+| image template  | [template.pkr.hcl](template.pkr.hcl)                       |
+| image variables | [variables.pkr.hcl](variables.pkr.hcl)                      |
 | build command   | `make build template=./alpine-with-cloudinit` |
-| lint command    | `make lint target=./alpine-with-cloudinit`    |
+| lint command    | `make lint template=./alpine-with-cloudinit`  |
 
 ## Usage
 
