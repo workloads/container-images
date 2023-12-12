@@ -54,6 +54,12 @@ variable "target_image_description" {
   default     = "Minecraft Bot on Node (Slim, Bookworm LTS)"
 }
 
+variable "target_image_workdir" {
+  type        = string
+  description = "WORKDIR of the Output Container Image."
+  default     = "/srv"
+}
+
 locals {
   source_content_address       = "${var.source_registry}/${var.source_image}:${var.source_version[var.target_platform]}"
   target_image_repository_slug = "container-images/tree/main/${var.target_image_name}"
