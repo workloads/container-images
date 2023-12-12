@@ -17,6 +17,40 @@ variable "keep_input_artifact" {
   default     = true
 }
 
+locals {
+  # labels that are shared between all images
+  labels = [
+    # see https://specs.opencontainers.org/image-spec/annotations/#pre-defined-annotation-keys
+    "LABEL org.opencontainers.image.authors='${var.target_image_repository_namespace}'",
+    "LABEL org.opencontainers.image.authors=${var.target_image_repository_namespace}",
+    "LABEL org.opencontainers.image.created='${timestamp()}'",
+    "LABEL org.opencontainers.image.documentation='${local.image_source}/README.md'",
+    "LABEL org.opencontainers.image.url='${local.image_source}'",
+    "LABEL org.opencontainers.image.ref='${var.target_image_name}'",
+    "LABEL org.opencontainers.image.revision='${var.target_version}'",
+    "LABEL org.opencontainers.image.vendor='${var.target_image_repository_namespace}'",
+    "LABEL org.opencontainers.image.version='${var.target_version}'",
+    "LABEL org.opencontainers.image.title='${var.target_image_name}'",
+
+    # label images for publishing via GitHub Container Registry
+    # see https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#labelling-container-images
+    "LABEL org.opencontainers.image.description='${var.target_image_description}'",
+    "LABEL org.opencontainers.image.licenses='${var.target_image_license}'",
+    "LABEL org.opencontainers.image.source='${local.image_source}'",
+  ]
+}
+
+variable "platforms" {
+  type        = map(string)
+  description = "Map of Platforms."
+
+  default = {
+    "arm"    = "linux/arm/v7",
+    "arm64"  = "linux/arm64/v8",
+    "x86_64" = "linux/amd64",
+  }
+}
+
 # see https://developer.hashicorp.com/packer/plugins/builders/docker#pull
 variable "pull" {
   type        = bool
@@ -24,7 +58,6 @@ variable "pull" {
   default     = true
 }
 
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
 variable "target_image_org" {
   type        = string
   description = "Namespace / Organization of the Output Container Image."
@@ -37,13 +70,17 @@ variable "target_image_license" {
   default     = "Apache-2.0"
 }
 
+variable "target_platform" {
+  type        = string
+  description = "Target Platform as received from `make`."
+}
+
 variable "target_registry_password" {
   type        = string
   description = "Password of the Container Registry of the Output Container Image. Parsed using `env()`."
   default     = env("PACKER_TARGET_REGISTRY_PASSWORD")
 }
 
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
 variable "target_registry_server" {
   type        = string
   description = "Address of the Container Registry of the Output Container Image."
@@ -57,7 +94,6 @@ variable "target_registry_username" {
 }
 
 # `target_version` as received from `make`
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
 variable "target_version" {
   type        = string
   description = "Target Version Output Container Image as received from `make`."

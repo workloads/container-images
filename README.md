@@ -10,7 +10,9 @@
   * [Requirements](#requirements)
   * [Usage](#usage)
   * [Notes](#notes)
+    * [Specifying a Platform](#specifying-a-platform)
     * [Publishing Images](#publishing-images)
+    * [Version Names](#version-names)
     * [Security Scanning](#security-scanning)
     * [Development Helpers](#development-helpers)
     * [Colored Output](#colored-output)
@@ -57,6 +59,16 @@ _selfcheck        lint Makefile                                                 
 > All workflows _may_ be executed manually, though this is not advisable. See the [Makefile](./Makefile) for more information.
 
 ## Notes
+
+### Specifying a Platform
+
+The `platform` flag may be used to specify the name of the (Image) Platform to use.
+
+```shell
+make build template=<template> PLATFORM=arm64
+````
+
+When omitted, the `platform` flag defaults to the host system's CPU architecture (as reported by `uname -m`).
 
 ### Publishing Images
 

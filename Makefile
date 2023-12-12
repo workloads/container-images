@@ -13,6 +13,7 @@ DOCS_CONFIG            = .packer-docs.yml
 IMAGE_NAME            ?= $(shell basename $(image))
 OP_ACCOUNT             = workloads.1password.com
 OP_ENV_FILE            = secrets.op.env
+PLATFORM              ?= $(shell uname -m) # default to system arch; common values are `x86_64` and `arm64`
 REGISTRY_ADDRESS      ?= ghcr.io
 REGISTRY_PASSWORD_REF ?= "op://Shared/github/tokens/container-images"
 REGISTRY_USERNAME     ?= $(shell op read --account="$(OP_ACCOUNT)" --no-newline "$(REGISTRY_USERNAME_REF)")
@@ -33,7 +34,7 @@ args_except =
 endif
 
 # convenience handle for ALL CLI arguments
-cli_args = $(args_except) -var="target_version=$(VERSION)"
+cli_args = $(args_except) -var="target_platform=$(strip $(PLATFORM))" "-var=target_version=$(strip $(VERSION))"
 
 include ../tooling/make/configs/shared.mk
 include ../tooling/make/functions/shared.mk
