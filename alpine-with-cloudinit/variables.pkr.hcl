@@ -32,6 +32,12 @@ variable "source_image" {
   default     = "alpine"
 }
 
+variable "source_payload" {
+  type        = string
+  description = "File or Directory to upload to the Output Container Image."
+  default     = null
+}
+
 # see https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker#image
 variable "source_registry" {
   type        = string
@@ -63,6 +69,12 @@ variable "target_image_description" {
   type        = string
   description = "Description of the Output Container Image."
   default     = "Alpine Linux with Cloud-Init"
+}
+
+variable "target_image_workdir" {
+  type        = string
+  description = "WORKDIR of the Output Container Image."
+  default     = "/"
 }
 
 locals {

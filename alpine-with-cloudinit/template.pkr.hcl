@@ -2,6 +2,8 @@
 source "docker" "main" {
   # see https://developer.hashicorp.com/packer/plugins/builders/docker#changes
   changes = [
+    "WORKDIR ${var.target_image_workdir}",
+
     "ENTRYPOINT /usr/bin/cloud-init schema --config-file /config/*",
 
     # see https://specs.opencontainers.org/image-spec/annotations/#pre-defined-annotation-keys

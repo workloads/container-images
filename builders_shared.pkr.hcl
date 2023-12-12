@@ -17,6 +17,14 @@ build {
     "source.docker.main",
   ]
 
+  # see https://developer.hashicorp.com/packer/docs/provisioners/file
+  provisioner "file" {
+    source      = var.source_payload
+    destination = var.target_image_workdir
+    direction   = "upload"
+    max_retries = 3
+  }
+
   # see https://developer.hashicorp.com/packer/docs/provisioners/shell
   provisioner "shell" {
     inline         = var.inline_commands
