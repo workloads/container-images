@@ -24,7 +24,6 @@ variable "pull" {
   default     = true
 }
 
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
 variable "target_image_org" {
   type        = string
   description = "Namespace / Organization of the Output Container Image."
@@ -43,7 +42,6 @@ variable "target_registry_password" {
   default     = env("PACKER_TARGET_REGISTRY_PASSWORD")
 }
 
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
 variable "target_registry_server" {
   type        = string
   description = "Address of the Container Registry of the Output Container Image."
@@ -57,7 +55,6 @@ variable "target_registry_username" {
 }
 
 # `target_version` as received from `make`
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
 variable "target_version" {
   type        = string
   description = "Target Version Output Container Image as received from `make`."
