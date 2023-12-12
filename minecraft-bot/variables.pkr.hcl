@@ -22,9 +22,18 @@ variable "source_registry" {
 # see https://hub.docker.com/_/node/tags
 # and https://developer.hashicorp.com/packer/plugins/builders/docker#image
 variable "source_version" {
-  type        = string
-  description = "Version of the Input Container Image."
-  default     = "20.5.1-bookworm-slim"
+
+# see https://hub.docker.com/_/node/tags?name=18-bookworm-slim
+# and https://developer.hashicorp.com/packer/plugins/builders/docker#image
+variable "source_version" {
+  type        = map(string)
+  description = "Platform Map of Versions of the Input Container Image."
+
+  default     = {
+    "arm"    = "18-bookworm-slim@sha256:bd4cfdbcdf79c9c500f19366c86c5f934cdc26a8a8ed20710078a4bb695934ee",
+    "arm64"  = "18-bookworm-slim@sha256:607a90ca0915374e81693b75ff260145a3f75e2abac9732165322e3d961ca2d7",
+    "x86_64" = "18-bookworm-slim@sha256:28b1bfae5e6454793e89934c79ebf9c18dc844da8d6af3617c80bb2d2ccc6d53",
+  }
 }
 
 variable "target_image_name" {
@@ -46,7 +55,7 @@ variable "target_image_description" {
 }
 
 locals {
-  source_content_address       = "${var.source_registry}/${var.source_image}:${var.source_version}"
+  source_content_address       = "${var.source_registry}/${var.source_image}:${var.source_version[var.target_platform]}"
   target_image_repository_slug = "container-images/tree/main/${var.target_image_name}"
   image_source                 = "${var.target_image_repository_namespace}/${local.target_image_repository_slug}"
 }
