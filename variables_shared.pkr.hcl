@@ -78,7 +78,7 @@ variable "target_platform" {
 variable "target_registry_password" {
   type        = string
   description = "Password of the Container Registry of the Output Container Image. Parsed using `env()`."
-  default     = "PACKER_TARGET_REGISTRY_PASSWORD"
+  default     = env("PACKER_TARGET_REGISTRY_PASSWORD")
 }
 
 variable "target_registry_server" {
@@ -90,7 +90,7 @@ variable "target_registry_server" {
 variable "target_registry_username" {
   type        = string
   description = "Username of the Container Registry of the Output Container Image. Parsed using `env()`."
-  default     = "PACKER_TARGET_REGISTRY_USERNAME"
+  default     = env("PACKER_TARGET_REGISTRY_USERNAME")
 }
 
 # `target_version` as received from `make`
