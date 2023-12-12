@@ -23,14 +23,41 @@ variable "inline_shebang" {
   default     = "/bin/sh -e"
 }
 
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
+# see https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker#image
 variable "source_image" {
   type        = string
   description = "Namespace and Image Slug of the Input Container Image."
   default     = "node"
 }
 
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
+variable "source_payload" {
+  type        = string
+  description = "File or Directory to upload to the Output Container Image."
+
+  # TODO: change
+  # If this is a directory, include a trailing slash
+  default = "../minecraft-bot/"
+}
+
+# TODO: add support for excluding files
+variable "source_payload_exclude" {
+  type        = list(string)
+  description = "File and Directories to exclude from upload to the Output Container Image."
+
+  default = [
+    ".envrc",
+    ".eslintignore",
+    ".eslintrc.json",
+    ".git",
+    ".gitignore",
+    "*.log",
+    "dist",
+    "Dockerfile",
+    "tsconfig.json",
+  ]
+}
+
+# see https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker#image
 variable "source_registry" {
   type        = string
   description = "Registry of the Input Container Image."
@@ -38,7 +65,7 @@ variable "source_registry" {
 }
 
 # see https://hub.docker.com/_/node/tags?name=18-bookworm-slim
-# and https://developer.hashicorp.com/packer/plugins/builders/docker#image
+# and https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker#image
 variable "source_version" {
   type = map(string)
   description = "Platform Map of Versions of the Input Container Image."
@@ -72,33 +99,6 @@ variable "target_image_workdir" {
   type        = string
   description = "WORKDIR of the Output Container Image."
   default     = "/srv"
-}
-
-variable "source_payload" {
-  type        = string
-  description = "File or Directory to upload to the Output Container Image."
-
-  # TODO: change
-  # If this is a directory, include a trailing slash
-  default = "../minecraft-bot/"
-}
-
-# TODO: add support for excluding files
-variable "source_payload_exclude" {
-  type        = list(string)
-  description = "File and Directories to exclude from upload to the Output Container Image."
-
-  default = [
-    ".envrc",
-    ".eslintignore",
-    ".eslintrc.json",
-    ".git",
-    ".gitignore",
-    "*.log",
-    "dist",
-    "Dockerfile",
-    "tsconfig.json",
-  ]
 }
 
 locals {

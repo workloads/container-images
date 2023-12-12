@@ -1,4 +1,4 @@
-# see https://developer.hashicorp.com/packer/plugins/builders/docker
+# see https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker
 source "docker" "main" {
   # see https://developer.hashicorp.com/packer/plugins/builders/docker#changes
   # and https://developer.hashicorp.com/packer/docs/templates/hcl_templates/functions/collection/concat
@@ -17,6 +17,6 @@ source "docker" "main" {
   fix_upload_owner = true
   commit           = var.commit
   image            = local.source_content_address
-  platform         = var.platform
+  platform         = var.platforms[var.target_platform]
   pull             = var.pull
 }
