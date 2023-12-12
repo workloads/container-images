@@ -70,10 +70,15 @@ variable "target_image_license" {
   default     = "Apache-2.0"
 }
 
+variable "target_platform" {
+  type        = string
+  description = "Target Platform as received from `make`."
+}
+
 variable "target_registry_password" {
   type        = string
   description = "Password of the Container Registry of the Output Container Image. Parsed using `env()`."
-  default     = env("PACKER_TARGET_REGISTRY_PASSWORD")
+  default     = "PACKER_TARGET_REGISTRY_PASSWORD"
 }
 
 variable "target_registry_server" {
@@ -85,7 +90,7 @@ variable "target_registry_server" {
 variable "target_registry_username" {
   type        = string
   description = "Username of the Container Registry of the Output Container Image. Parsed using `env()`."
-  default     = env("PACKER_TARGET_REGISTRY_USERNAME")
+  default     = "PACKER_TARGET_REGISTRY_USERNAME"
 }
 
 # `target_version` as received from `make`

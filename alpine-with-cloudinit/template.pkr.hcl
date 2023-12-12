@@ -11,6 +11,6 @@ source "docker" "main" {
   fix_upload_owner = true
   commit           = var.commit
   image            = local.source_content_address
-  platform         = var.platform
+  platform         = var.platforms[var.target_platform]
   pull             = var.pull
 }

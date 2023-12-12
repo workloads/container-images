@@ -48,9 +48,14 @@ variable "source_registry" {
 # see https://hub.docker.com/_/alpine/tags
 # and https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker#image
 variable "source_version" {
-  type        = string
-  description = "Version of the Input Container Image."
-  default     = "3.18.3"
+  type        = map(string)
+  description = "Platform Map of Versions of the Input Container Image."
+
+  default     = {
+    "arm"    = "3.19.0@sha256:41f5f86616c51186dde18811bae696c689d6d492e1428f84fd74d42b43799c71",
+    "arm64"  = "3.19.0@sha256:a70bcfbd89c9620d4085f6bc2a3e2eef32e8f3cdf5a90e35a1f95dcbd7f71548",
+    "x86_64" = "3.19.0@sha256:13b7e62e8df80264dbb747995705a986aa530415763a6c58f84a3ca8af9a5bcd",
+  }
 }
 
 variable "target_image_name" {
@@ -78,7 +83,7 @@ variable "target_image_workdir" {
 }
 
 locals {
-  source_content_address       = "${var.source_registry}/${var.source_image}:${var.source_version}"
+  source_content_address       = "${var.source_registry}/${var.source_image}:${var.source_version[var.target_platform]}"
   target_image_repository_slug = "container-images/tree/main/${var.target_image_name}"
   image_source                 = "${var.target_image_repository_namespace}/${local.target_image_repository_slug}"
 }
