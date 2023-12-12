@@ -1,4 +1,4 @@
-# see https://developer.hashicorp.com/packer/plugins/builders/docker
+# see https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker
 source "docker" "main" {
   # see https://developer.hashicorp.com/packer/plugins/builders/docker#changes
   changes = [
@@ -23,12 +23,9 @@ source "docker" "main" {
     "LABEL org.opencontainers.image.source='${local.image_source}'",
   ]
 
-  # see https://developer.hashicorp.com/packer/plugins/builders/docker#commit
-  commit = var.commit
-
-  # see https://developer.hashicorp.com/packer/plugins/builders/docker#image
-  image = local.source_content_address
-
-  # see https://developer.hashicorp.com/packer/plugins/builders/docker#pull
-  pull = var.pull
+  fix_upload_owner = true
+  commit           = var.commit
+  image            = local.source_content_address
+  platform         = var.platform
+  pull             = var.pull
 }

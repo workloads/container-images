@@ -25,14 +25,14 @@ variable "inline_shebang" {
   default     = "/bin/sh -e"
 }
 
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
+# see https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker#image
 variable "source_image" {
   type        = string
   description = "Namespace and Image Slug of the Input Container Image."
   default     = "alpine"
 }
 
-# see https://developer.hashicorp.com/packer/plugins/builders/docker#image
+# see https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker#image
 variable "source_registry" {
   type        = string
   description = "Registry of the Input Container Image."
@@ -40,7 +40,7 @@ variable "source_registry" {
 }
 
 # see https://hub.docker.com/_/alpine/tags
-# and https://developer.hashicorp.com/packer/plugins/builders/docker#image
+# and https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker#image
 variable "source_version" {
   type        = string
   description = "Version of the Input Container Image."
