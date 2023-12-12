@@ -35,6 +35,8 @@ build {
     # see https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/builder/docker#using-the-artifact-committed
     # and https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/post-processor/docker-tag
     post-processor "docker-tag" {
+      name = "docker-tag"
+
       force      = var.force_tag
       repository = "${var.target_registry_server}/${var.target_image_org}/${var.target_image_name}"
 
@@ -46,6 +48,8 @@ build {
 
     # see https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/post-processor/docker-push
     post-processor "docker-push" {
+      name = "docker-push"
+
       keep_input_artifact = var.keep_input_artifact
 
       # see https://developer.hashicorp.com/packer/integrations/hashicorp/docker/latest/components/post-processor/docker-push#configuration
