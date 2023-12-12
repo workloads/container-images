@@ -74,6 +74,33 @@ variable "target_image_workdir" {
   default     = "/srv"
 }
 
+variable "source_payload" {
+  type        = string
+  description = "File or Directory to upload to the Output Container Image."
+
+  # TODO: change
+  # If this is a directory, include a trailing slash
+  default = "../minecraft-bot/"
+}
+
+# TODO: add support for excluding files
+variable "source_payload_exclude" {
+  type        = list(string)
+  description = "File and Directories to exclude from upload to the Output Container Image."
+
+  default = [
+    ".envrc",
+    ".eslintignore",
+    ".eslintrc.json",
+    ".git",
+    ".gitignore",
+    "*.log",
+    "dist",
+    "Dockerfile",
+    "tsconfig.json",
+  ]
+}
+
 locals {
   source_content_address       = "${var.source_registry}/${var.source_image}:${var.source_version[var.target_platform]}"
   target_image_repository_slug = "container-images/tree/main/${var.target_image_name}"
