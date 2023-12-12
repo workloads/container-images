@@ -1,3 +1,21 @@
+# see https://developer.hashicorp.com/packer/docs/provisioners/shell#inline
+variable "inline_commands" {
+  type        = list(string)
+  description = "Commands to run with the Shell Provisioner."
+
+  default = [
+    # disable NPM audit, fund, and update notifications
+    # see https://docs.npmjs.com/cli/v9/commands/npm-config
+    "npm config set audit false",
+    "npm config set fund false",
+    "npm config set update-notifier false",
+
+    # change into working directory and install dependencies
+    # see https://docs.npmjs.com/cli/v10/commands/npm-install
+    "cd /srv && npm install",
+  ]
+}
+
 # see https://developer.hashicorp.com/packer/docs/provisioners/shell#inline_shebang
 variable "inline_shebang" {
   type        = string
