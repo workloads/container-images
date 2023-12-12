@@ -23,12 +23,12 @@
 
 ## Overview
 
-|                 |                                       |
-|-----------------|---------------------------------------|
-| image template  | [template.pkr.hcl](template.pkr.hcl)               |
-| image variables | [variables.pkr.hcl](variables.pkr.hcl)              |
-| build command   | `make build template=./minecraft-bot` |
-| lint command    | `make lint template=./minecraft-bot`  |
+|                 |                                        |
+|-----------------|----------------------------------------|
+| image template  | [template.pkr.hcl](template.pkr.hcl)   |
+| image variables | [variables.pkr.hcl](variables.pkr.hcl) |
+| build command   | `make build template=./minecraft-bot`  |
+| lint command    | `make lint template=./minecraft-bot`   |
 
 ## Usage
 
