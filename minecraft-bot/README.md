@@ -37,6 +37,7 @@ The `minecraft-bot` image should be run like so::
 ```shell
 docker \
   run \
+    --env-file ".env" \
     --interactive \
     --quiet \
     --rm \
