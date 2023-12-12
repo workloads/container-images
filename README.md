@@ -40,7 +40,7 @@ Running `make` without commands will print out the following help information:
 ```text
 🐳 CONTAINER IMAGES
 
-Target            Description                                     Usage
+Target            Description                                                        Usage
 init              initialize a Packer Template                                       `make init template=<template>`
 lint              lint a Container Image Template                                    `make lint template=<template>`
 build             build a Container Image                                            `make build template=<template>`
