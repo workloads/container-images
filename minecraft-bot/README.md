@@ -11,7 +11,7 @@
   * [Overview](#overview)
   * [Usage](#usage)
     * [Inputs](#inputs)
-  * [Author Information](#author-information)
+  * [Contributors](#contributors)
   * [License](#license)
 <!-- TOC -->
 
@@ -75,16 +75,14 @@ docker \
 | target_version | Target Version Output Container Image as received from `make`. | n/a |
 <!-- END_PACKER_DOCS -->
 
-## Author Information
+## Contributors
 
-This repository is maintained by the contributors listed on [GitHub](https://github.com/workloads/container-images/graphs/contributors).
+For a list of current (and past) contributors to this repository, see [GitHub](https://github.com/workloads/container-images/graphs/contributors).
 
 ## License
 
 Licensed under the Apache License, Version 2.0 (the "License").
 
-You may obtain a copy of the License at [apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an _"AS IS"_ basis, without WARRANTIES or conditions of any kind, either express or implied.
+You may download a copy of the License at [apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 See the License for the specific language governing permissions and limitations under the License.
