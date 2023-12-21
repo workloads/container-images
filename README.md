@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-<!-- TOC -->
+<!-* TOC -->
 * [Container Images](#container-images)
   * [Table of Contents](#table-of-contents)
   * [Requirements](#requirements)
@@ -19,20 +19,20 @@
     * [Colorized Output](#colorized-output)
   * [Contributors](#contributors)
   * [License](#license)
-<!-- TOC -->
+<!-* TOC -->
 
 ## Requirements
 
-- HashiCorp Packer `1.10.x` or [newer](https://developer.hashicorp.com/packer/downloads)
-- Docker `24.0.0` or [newer](https://www.docker.com/products/docker-desktop/)
-  - alternate compatible runtimes (e.g.: Podman, OrbStack) may be used
-- a copy of [@workloads/tooling](https://github.com/workloads/tooling)
+* HashiCorp Packer `1.10.x` or [newer](https://developer.hashicorp.com/packer/downloads)
+* Docker `24.0.0` or [newer](https://www.docker.com/products/docker-desktop/)
+  * alternate compatible runtimes (e.g.: Podman, OrbStack) may be used
+* a copy of [@workloads/tooling](https://github.com/workloads/tooling)
 
 ### Development
 
 For development and testing of this repository:
 
-- `terraform-docs` `0.17.0` or [newer](https://terraform-docs.io/user-guide/installation/)
+* `terraform-docs` `0.17.0` or [newer](https://terraform-docs.io/user-guide/installation/)
 
 ## Usage
 
