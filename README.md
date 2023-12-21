@@ -1,6 +1,6 @@
 # Container Images
 
-> This directory manages Container Images for [@workloads](https://github.com/workloads).
+> This repository manages container images for [@workloads](https://github.com/workloads).
 
 ## Table of Contents
 
@@ -8,6 +8,7 @@
 * [Container Images](#container-images)
   * [Table of Contents](#table-of-contents)
   * [Requirements](#requirements)
+    * [Development](#development)
   * [Usage](#usage)
   * [Notes](#notes)
     * [Specifying a Platform](#specifying-a-platform)
@@ -22,12 +23,14 @@
 
 ## Requirements
 
-- HashiCorp Packer `1.9.0` or [newer](https://developer.hashicorp.com/packer/downloads)
+- HashiCorp Packer `1.10.x` or [newer](https://developer.hashicorp.com/packer/downloads)
 - Docker `24.0.0` or [newer](https://www.docker.com/products/docker-desktop/)
   - alternate compatible runtimes (e.g.: Podman, OrbStack) may be used
-- a check-out of [@workloads/tooling](https://github.com/workloads/tooling)
+- a copy of [@workloads/tooling](https://github.com/workloads/tooling)
 
-Optional, and only needed for development and testing of Container Images:
+### Development
+
+For development and testing of this repository:
 
 - `terraform-docs` `0.17.0` or [newer](https://terraform-docs.io/user-guide/installation/)
 

@@ -17,7 +17,7 @@
 
 ## Requirements
 
-- HashiCorp Packer `1.9.0` or [newer](https://developer.hashicorp.com/packer/downloads)
+- HashiCorp Packer `1.10.0` or [newer](https://developer.hashicorp.com/packer/downloads)
 - Docker `24.0.0` or [newer](https://www.docker.com/products/docker-desktop/)
   - alternate compatible runtimes (e.g.: Podman, OrbStack) may be used
 
