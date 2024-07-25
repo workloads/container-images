@@ -24,7 +24,7 @@ SNYK_ORG              ?= workloads
 VERSION               ?= $(shell TZ=UTC date +'%Y%m%d-%H%M')
 YAMLLINT_CONFIG       ?= .yaml-lint.yml
 YAMLLINT_FORMAT	      ?= colored
-TITLE                  = 🐳 CONTAINER IMAGES
+MAKEFILE_TITLE         = 🐳 CONTAINER IMAGES
 
 args_except = -except="docker-push"
 
